@@ -1,0 +1,45 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "products": [
+    {
+      "id": 1,
+      "productName": "Cây Thiết Mộc Lan nội thất",
+      "urlImage": "https://vuoncayviet.com/data/items/1216/thiet-moc-lan-vcv.jpg",
+      "price": 9000000,
+      "createDate": "20203",
+      "updateDate": "4/12/2022"
+    },
+    {
+      "productName": "Cây Trúc Bách Hợp",
+      "price": 300000,
+      "urlImage": "https://vuoncayviet.com/data/items/1204/truc-bach-hop-vcv.jpg",
+      "createDate": "4/12/2022",
+      "updateDate": "4/12/2022",
+      "id": 3
+    },
+    {
+      "productName": "Cây Lưỡi Hổ Thái Vàng",
+      "price": 1000000,
+      "urlImage": "https://vuoncayviet.com/data/items/1157/cay-luoi-ho-thai-vang.jpg",
+      "createDate": "4/12/2022",
+      "updateDate": "4/12/2022",
+      "id": 4
+    }
+  ]
+}
