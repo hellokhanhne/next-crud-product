@@ -14,32 +14,16 @@
     }
   ],
   "profile": {
-    "name": "typicode"
+    "name": "oke"
   },
   "products": [
     {
-      "id": 1,
-      "productName": "Cây Thiết Mộc Lan nội thất",
-      "urlImage": "https://vuoncayviet.com/data/items/1216/thiet-moc-lan-vcv.jpg",
-      "price": 9000000,
-      "createDate": "20203",
-      "updateDate": "4/12/2022"
-    },
-    {
-      "productName": "Cây Trúc Bách Hợp",
-      "price": 300000,
-      "urlImage": "https://vuoncayviet.com/data/items/1204/truc-bach-hop-vcv.jpg",
-      "createDate": "4/12/2022",
-      "updateDate": "4/12/2022",
-      "id": 3
-    },
-    {
-      "productName": "Cây Lưỡi Hổ Thái Vàng",
-      "price": 1000000,
-      "urlImage": "https://vuoncayviet.com/data/items/1157/cay-luoi-ho-thai-vang.jpg",
-      "createDate": "4/12/2022",
-      "updateDate": "4/12/2022",
-      "id": 4
+      "productName": "CÂY NGỌC NGÂN THỦY SINHH",
+      "price": 500000000,
+      "createDate": "4/13/2022",
+      "updateDate": "4/13/2022",
+      "urlImage": "1649837550540-586394031ngoc-ngan-1637568717.jpg",
+      "id": 1
     }
   ]
 }

@@ -5,11 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "json-server --watch db.json"
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json-server": "^0.17.0"
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.0",
+    "json-server": "^0.17.0",
+    "json-server-uploader": "^1.0.3",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15"
   }
 }

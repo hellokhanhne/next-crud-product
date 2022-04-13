@@ -1,8 +1,11 @@
 import { useAppDispatch } from "app/hooks";
 import { setUpdateProduct, updateProduct } from "app/reducer/productSlice";
+import axios from "axios";
+import { BASE_URL, IMAGE_BASE_URL } from "constant/url";
 import { Product } from "interface";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, RefObject, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 interface IInitState {
@@ -18,6 +21,7 @@ interface IProps {
 
 const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
   const router = useRouter();
+  const [file, setFile] = useState(null);
 
   const [product, setProduct] = useState<IInitState>({
     price: updateProductData.price.toString(),
@@ -25,9 +29,18 @@ const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
     urlImage: updateProductData.urlImage,
   });
 
+  const ref: RefObject<HTMLInputElement> = useRef();
+
   const dispatch = useAppDispatch();
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    let filename: string;
+    if (file) {
+      const formdata = new FormData();
+      formdata.append("file", file);
+      filename = (await axios.post(`${BASE_URL}/upload`, formdata)).data;
+    }
 
     dispatch(
       updateProduct({
@@ -37,6 +50,7 @@ const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
           ...product,
           price: parseFloat(product.price),
           updateDate: new Date().toLocaleDateString(),
+          urlImage: file ? filename : updateProductData.urlImage,
         },
       })
     );
@@ -46,7 +60,10 @@ const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProduct({
+    if (e.target.name === "file") {
+      return setFile(e.target.files[0]);
+    }
+    return setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
@@ -76,18 +93,6 @@ const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="urlImage">
-        <Form.Label>Product image</Form.Label>
-        <Form.Control
-          type="text"
-          name="urlImage"
-          placeholder="Enter product image"
-          required
-          value={product.urlImage}
-          onChange={handleOnChange}
-        />
-      </Form.Group>
-
       <Form.Group className="mb-3" controlId="price">
         <Form.Label>Product price</Form.Label>
         <Form.Control
@@ -99,6 +104,42 @@ const UpdateForm = ({ updateProductData, handleClose }: IProps) => {
           onChange={handleOnChange}
         />
       </Form.Group>
+
+      <Form.Group className="mb-3" controlId="file">
+        <Form.Label>Product image</Form.Label>
+        <Form.Control
+          className="form-control"
+          type="file"
+          name="file"
+          ref={ref}
+          onChange={handleOnChange}
+        />
+      </Form.Group>
+      {(product.urlImage || file) && (
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            paddingBottom: "50%",
+            marginBottom: "20px",
+          }}
+        >
+          <Image
+            src={
+              file
+                ? URL.createObjectURL(file)
+                : `${IMAGE_BASE_URL}/${product.urlImage}`
+            }
+            loader={() =>
+              file
+                ? URL.createObjectURL(file)
+                : `${IMAGE_BASE_URL}/${product.urlImage}`
+            }
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      )}
       <div className="text-right">
         <Button
           variant="secondary"

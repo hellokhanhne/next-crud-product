@@ -2,9 +2,11 @@ import { useAppDispatch } from "app/hooks";
 import { deleteProduct } from "app/reducer/productSlice";
 import { Product } from "interface";
 import Link from "next/link";
-import React, { useState } from "react";
+import Image from "next/image";
+import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { IMAGE_BASE_URL } from "constant/url";
 
 interface IProps {
   product: Product;
@@ -40,10 +42,13 @@ const Product = ({ product }: IProps) => {
           >
             Delete
           </Button>
-          <Card.Img
-            style={{ height: "300px", objectFit: "cover" }}
-            variant="top"
-            src={product.urlImage}
+
+          <Image
+            objectFit="cover"
+            width="100%"
+            height={300}
+            src={`${IMAGE_BASE_URL}/${product.urlImage}`}
+            loader={() => `${IMAGE_BASE_URL}/${product.urlImage}`}
           />
           <Card.Body>
             <Card.Title>

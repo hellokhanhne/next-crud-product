@@ -1,8 +1,10 @@
 import { useAppDispatch } from "app/hooks";
 import { setUpdateProduct } from "app/reducer/productSlice";
 import ModalUpdate from "components/modalUpdate";
+import { IMAGE_BASE_URL } from "constant/url";
 import { Product } from "interface";
 import { getIdProducts, getOneProduct } from "lib/product";
+import Image from "next/image";
 import React from "react";
 import { Button } from "react-bootstrap";
 
@@ -21,11 +23,12 @@ const Product = ({ product }: IProps) => {
     <>
       <div className="mt-4">
         <div className="d-flex ">
-          <img
-            src={product.urlImage}
-            className="w-50 p-4"
+          <Image
+            objectFit="cover"
+            width={500}
             height={500}
-            alt=""
+            src={`${IMAGE_BASE_URL}/${product.urlImage}`}
+            loader={() => `${IMAGE_BASE_URL}/${product.urlImage}`}
           />
           <div className="p-4 " style={{ flex: 1 }}>
             <div className="d-flex justify-content-between">

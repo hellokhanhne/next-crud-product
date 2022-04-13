@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 function Layout({ children }) {
   const dispatch = useAppDispatch();
   const message = useAppSelector(Message);
-  //
+
   useEffect(() => {}, [message]);
 
   useEffect(() => {
@@ -30,9 +30,6 @@ function Layout({ children }) {
                 <Nav className="me-auto">
                   <span className="nav-link">
                     <Link href="/">Products</Link>
-                  </span>
-                  <span className="nav-link">
-                    <Link href="/create">Create product</Link>
                   </span>
                 </Nav>
               </Navbar.Collapse>
